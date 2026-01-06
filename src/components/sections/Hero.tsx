@@ -133,7 +133,7 @@ export default function Hero() {
         <div className="relative h-full flex items-end justify-center">
           <div className="absolute bottom-0 w-[100%] h-[30%] bg-red-600/20 blur-[120px] rounded-full" />
           <Image
-            src="/hero.png" 
+            src="/aset/hero.png" 
             alt="Avatar" 
             width={1400} 
             height={1400}
@@ -143,7 +143,7 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* GRADIENT PENYAMBUNG */}
+      {/* GRADIENT*/}
       <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/90 to-transparent z-[20]" />
     </section>
   );
