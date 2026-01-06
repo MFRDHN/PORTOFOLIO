@@ -133,7 +133,7 @@ export default function Hero() {
         <div className="relative h-full flex items-end justify-center">
           <div className="absolute bottom-0 w-[100%] h-[30%] bg-red-600/20 blur-[120px] rounded-full" />
           <Image
-            src="/aset/hero_profile.png" 
+            src="/aset/pp.png" 
             alt="Avatar" 
             width={1400} 
             height={1400}
