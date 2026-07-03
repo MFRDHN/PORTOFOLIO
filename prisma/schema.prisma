@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Project {
+  id           Int      @id @default(autoincrement())
+  slug         String   @unique
+  title        String
+  category     String
+  desc         String
+  images       String   @default("[]")
+  technologies String   @default("[]")
+  repoUrl      String   @default("")
+  liveUrl      String   @default("")
+  featured     Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Certificate {
+  id           Int      @id @default(autoincrement())
+  title        String
+  subtitle     String
+  image        String   @default("")
+  color        String   @default("#991b1b")
+  gradient     String   @default("linear-gradient(145deg,#991b1b,#1a1a2e)")
+  date         String
+  credentialUrl String  @default("")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  password String
+}

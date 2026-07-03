@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  /* Mendaftarkan font kustom ke sistem utility Tailwind */
+  --font-monument: var(--font-monument);
+  
+  /* Menambahkan warna brand jika diperlukan */
+  --color-brand-red: #991b1b;
+}
+
+/* Base Style */
+@layer base {
+  :root {
+    /* Fallback jika localFont di layout gagal dimuat */
+    --font-monument: "Monument Extended", sans-serif;
+  }
+
+  body {
+    @apply bg-[#0a0a0a] text-white antialiased;
+    font-family: Arial, sans-serif; /* Font default untuk body */
+  }
+
+  /* Shortcut untuk judul agar selalu pakai Monument */
+  h1, h2, h3 {
+    @apply font-[family-name:var(--font-monument)] tracking-tighter;
+  }
+}
+
+/* Custom Utilities */
+@utility text-monument {
+  font-family: var(--font-monument);
+}
