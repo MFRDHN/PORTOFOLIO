@@ -3,10 +3,7 @@ import { motion } from "framer-motion";
 import { FaWhatsapp, FaGithub, FaLinkedin, FaInstagram, FaArrowUp } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import FloatingDecor from "@/components/effects/FloatingDecor";
-<<<<<<< HEAD
 import Magnetic from "@/components/effects/Magnetic";
-=======
->>>>>>> e8cc6196486dd5056527a90a751c09251eeb0e1a
 
 export default function Contact() {
   const [time, setTime] = useState("");
@@ -81,7 +78,6 @@ export default function Contact() {
                 <p className="font-monument text-2xl md:text-4xl text-white">{time} <span className="text-red-600 text-sm">WIB</span></p>
             </div>
             
-<<<<<<< HEAD
             <Magnetic strength={0.2}>
               <motion.button 
                 onClick={scrollToTop}
@@ -92,16 +88,6 @@ export default function Contact() {
                 <FaArrowUp />
               </motion.button>
             </Magnetic>
-=======
-            <motion.button 
-              onClick={scrollToTop}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              className="mt-10 p-6 bg-red-600 rounded-full text-white shadow-xl hover:bg-white hover:text-black transition-all"
-            >
-              <FaArrowUp />
-            </motion.button>
->>>>>>> e8cc6196486dd5056527a90a751c09251eeb0e1a
           </div>
         </div>
 
@@ -117,7 +103,6 @@ export default function Contact() {
 
 function SocialLink({ href, label, icon }: { href: string, label: string, icon: React.ReactNode }) {
   return (
-<<<<<<< HEAD
     <Magnetic strength={0.15}>
       <motion.a 
         href={href}
@@ -129,16 +114,5 @@ function SocialLink({ href, label, icon }: { href: string, label: string, icon: 
         {label}
       </motion.a>
     </Magnetic>
-=======
-    <motion.a 
-      href={href}
-      target="_blank"
-      whileHover={{ x: 10 }}
-      className="group flex items-center gap-4 text-white/60 hover:text-red-600 transition-all font-monument text-xs uppercase tracking-widest"
-    >
-      <span className="text-lg group-hover:rotate-12 transition-transform">{icon}</span>
-      {label}
-    </motion.a>
->>>>>>> e8cc6196486dd5056527a90a751c09251eeb0e1a
   );
 }

@@ -3,10 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
-<<<<<<< HEAD
 import Magnetic from "@/components/effects/Magnetic";
-=======
->>>>>>> e8cc6196486dd5056527a90a751c09251eeb0e1a
 
 export default function Hero() {
   const containerRef = useRef(null);
@@ -66,7 +63,6 @@ export default function Hero() {
       { Icon: FaLinkedin, href: "https://www.linkedin.com/in/m-fajri-ramadhan-919058373/" },
       { Icon: FaGithub, href: "https://github.com/MFRDHN" },
     ].map((item, i) => (
-<<<<<<< HEAD
       <Magnetic key={i} strength={0.2}>
         <motion.a 
           href={item.href} 
@@ -84,24 +80,6 @@ export default function Hero() {
           <item.Icon size={22} />
         </motion.a>
       </Magnetic>
-=======
-      <motion.a 
-        key={i} 
-        href={item.href} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        animate={{ y: [0, -10, 0] }}
-        transition={{ 
-          duration: 4, 
-          repeat: Infinity, 
-          ease: "easeInOut", 
-          delay: i * 0.4 
-        }}
-        className="text-white/20 hover:text-red-600 transition-all duration-300"
-      >
-        <item.Icon size={22} />
-      </motion.a>
->>>>>>> e8cc6196486dd5056527a90a751c09251eeb0e1a
     ))}
  </div>
 
