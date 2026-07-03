@@ -11,7 +11,7 @@ function useResponsiveDimensions() {
     const update = () => {
       const vw = window.innerWidth;
       if (vw < 480) {
-        setDims({ cardWidth: Math.floor((vw - 40) / 2.5), gap: 8, cardHeight: 240, isCompact: true });
+        setDims({ cardWidth: Math.floor((vw - 40) / 1.7), gap: 8, cardHeight: Math.floor((vw - 40) / 1.2), isCompact: true });
       } else if (vw < 640) {
         setDims({ cardWidth: 200, gap: 14, cardHeight: 340, isCompact: true });
       } else if (vw < 1024) {
