@@ -2,7 +2,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
+<<<<<<< HEAD
 import Magnetic from "@/components/effects/Magnetic";
+=======
+>>>>>>> e8cc6196486dd5056527a90a751c09251eeb0e1a
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -61,6 +64,7 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="inline-block"
           >
+<<<<<<< HEAD
             <Magnetic strength={0.15}>
               <motion.button
                 whileHover={{ backgroundColor: "#dc2626", color: "#fff", scale: 1.05 }}
@@ -70,6 +74,15 @@ export default function Navbar() {
                 Contact Me
               </motion.button>
             </Magnetic>
+=======
+            <motion.button
+              whileHover={{ backgroundColor: "#dc2626", color: "#fff", scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-2 border border-white/10 text-white font-monument text-[9px] uppercase tracking-widest transition-all"
+            >
+              Contact Me
+            </motion.button>
+>>>>>>> e8cc6196486dd5056527a90a751c09251eeb0e1a
           </motion.a>
         </div>
 

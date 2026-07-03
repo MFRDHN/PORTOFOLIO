@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { 
   FaLaravel, FaPhp, FaHtml5, FaCss3Alt, FaJs, FaBootstrap, 
+<<<<<<< HEAD
   FaGithub, FaDownload, 
   FaUsers, FaLightbulb, FaRocket,
   FaServer, FaDatabase, FaReact, FaRobot, FaMicrochip
@@ -21,6 +22,20 @@ import {
 } from "react-icons/si";
 import { VscCode } from "react-icons/vsc";
 import Magnetic from "@/components/effects/Magnetic";
+=======
+  FaWordpress, FaGithub, FaDownload, 
+  FaPaintBrush, FaUsers, FaLightbulb, FaRocket,
+  FaServer, FaDatabase, FaFigma 
+} from "react-icons/fa";
+import { 
+  SiCodeigniter, 
+  SiCanva,
+  SiGit,
+  SiMysql,
+  SiTailwindcss
+} from "react-icons/si";
+import { VscCode } from "react-icons/vsc";
+>>>>>>> e8cc6196486dd5056527a90a751c09251eeb0e1a
 
 const fadeInUp: Variants = {
   hidden: { opacity: 0, y: 40 },
@@ -56,6 +71,7 @@ export default function About() {
   });
 
   const xWatermark = useTransform(scrollYProgress, [0, 1], [0, -400]);
+<<<<<<< HEAD
 
   const sectionOpacity = useTransform(
     scrollYProgress,
@@ -72,6 +88,11 @@ export default function About() {
     [0, 0.12, 0.85, 1],
     [0.95, 1, 1, 0.95]
   );
+=======
+  const scaleExit = useTransform(scrollYProgress, [0.8, 1], [1, 0.95]);
+  const opacityExit = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
+
+>>>>>>> e8cc6196486dd5056527a90a751c09251eeb0e1a
 
   if (!isMounted) return null;
 
@@ -82,7 +103,11 @@ export default function About() {
     >
 
       <motion.div 
+<<<<<<< HEAD
         style={{ opacity: sectionOpacity, y: sectionY, scale: sectionScale }}
+=======
+        style={{ scale: scaleExit, opacity: opacityExit }}
+>>>>>>> e8cc6196486dd5056527a90a751c09251eeb0e1a
         className="relative w-full min-h-screen bg-[#eeeeee] 
                    /* RADIUS ATAS */
                    rounded-t-[80px] md:rounded-t-[120px] 
@@ -117,12 +142,17 @@ export default function About() {
               <motion.div variants={fadeInUp} className="space-y-6 pt-10 border-t border-black/10">
                 <InfoItem label="Full Name" value="M. Fajri Ramadhan" />
                 <InfoItem label="Location" value="Jonggol, West Java" />
+<<<<<<< HEAD
                 <InfoItem label="Specialization" value="Full-Stack Developer" />
+=======
+                <InfoItem label="Specialization" value="Junior Web Developer" />
+>>>>>>> e8cc6196486dd5056527a90a751c09251eeb0e1a
                 <InfoItem label="Status" value="Student / Developer" />
               </motion.div>
 
 
                 <motion.div variants={fadeInUp}>
+<<<<<<< HEAD
                   <Magnetic strength={0.15}>
                     <motion.a 
                       href="https://docs.google.com/document/d/1nMEoi_hTaGD35Lsa8oy2q_BAW5UcYKWpHhU5CYLd1cY/edit?usp=drivesdk" 
@@ -141,6 +171,24 @@ export default function About() {
                       <FaDownload size={14} className="relative z-10 group-hover:rotate-12 transition-transform" />
                     </motion.a>
                   </Magnetic>
+=======
+                  <motion.a 
+                    href="https://docs.google.com/document/d/1nMEoi_hTaGD35Lsa8oy2q_BAW5UcYKWpHhU5CYLd1cY/edit?usp=drivesdk" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }} 
+                    whileTap={{ scale: 0.95 }} 
+                    className="group relative w-fit px-6 py-4 bg-[#111] text-white overflow-hidden rounded-xl flex items-center gap-3 transition-all shadow-lg cursor-pointer"
+                  >
+                    <div className="absolute inset-0 bg-red-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                    
+                    <span className="relative z-10 font-monument text-[9px] tracking-widest uppercase">
+                      Download CV
+                    </span>
+                    
+                    <FaDownload size={14} className="relative z-10 group-hover:rotate-12 transition-transform" />
+                  </motion.a>
+>>>>>>> e8cc6196486dd5056527a90a751c09251eeb0e1a
                 </motion.div>
             </motion.div>
 
@@ -151,16 +199,26 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }} 
                 viewport={{ once: true }}
                 className="text-[#333] text-xl md:text-2xl font-medium leading-relaxed"
+<<<<<<< HEAD
                > I build web applications from front to back — crafting clean interfaces with React &amp; Next.js and powering them with Laravel on the server side. Since 2023, I've been turning ideas into functional digital products, from e-commerce platforms to donation systems. I focus on writing scalable code, creating smooth user experiences, and delivering solutions that actually work. Currently exploring mobile development with Flutter and diving deeper into system architecture.              </motion.p>
+=======
+              > I am a Junior Web Developer who started learning programming in 2023, with hands-on experience in building functional, clean, and user-friendly websites. I am familiar with both front-end and back-end development, and I have a strong interest in creating efficient, responsive, and well-structured web applications. I am committed to continuous learning, improving my technical skills, and staying up to date with modern web technologies.              </motion.p>
+>>>>>>> e8cc6196486dd5056527a90a751c09251eeb0e1a
 
               <motion.div 
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={staggerContainer}
+<<<<<<< HEAD
                 className="space-y-6"
               >
                 <SkillCard title="Software Engineer" 
+=======
+                className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              >
+                <SkillCard title="Web Development" 
+>>>>>>> e8cc6196486dd5056527a90a751c09251eeb0e1a
                   icons={[
                     { icon: <FaPhp />, color: "hover:text-[#777BB4]" },
                     { icon: <FaLaravel />, color: "hover:text-[#FF2D20]" },
@@ -170,6 +228,7 @@ export default function About() {
                     { icon: <FaCss3Alt />, color: "hover:text-[#1572B6]" },
                     { icon: <FaJs />, color: "hover:text-[#F7DF1E]" },
                     { icon: <FaBootstrap />, color: "hover:text-[#7952B3]" },
+<<<<<<< HEAD
                     { icon: <SiTailwindcss />, color: "hover:text-[#06B6D4]" },
                     { icon: <SiFlutter />, color: "hover:text-[#02569B]" },
                     { icon: <SiDart />, color: "hover:text-[#0175C2]" },
@@ -201,6 +260,38 @@ export default function About() {
                     ]} 
                   />
                 </div>
+=======
+                    { icon: <SiTailwindcss />, color: "hover:text-[#06B6D4]" }
+                  ]} 
+                />
+
+                <SkillCard title="CMS & Design" 
+                  icons={[
+                    { icon: <FaWordpress />, color: "hover:text-[#21759B]" },
+                    { icon: <SiCanva />, color: "hover:text-[#00C4CC]" },
+                    { icon: <FaFigma />, color: "hover:text-[#F24E1E]" },
+                    { icon: <FaPaintBrush />, color: "hover:text-[#FF61F6]" }
+                  ]} 
+                />
+
+                <SkillCard title="Tools & Server" 
+                  icons={[
+                    { icon: <SiGit />, color: "hover:text-[#F05032]" },
+                    { icon: <FaGithub />, color: "hover:text-[#181717]" },
+                    { icon: <VscCode />, color: "hover:text-[#007ACC]" },
+                    { icon: <FaServer />, color: "hover:text-[#22B14C]" },
+                    { icon: <FaDatabase />, color: "hover:text-[#FB7E14]" }
+                  ]} 
+                />
+
+                <SkillCard title="Soft Skills" 
+                  icons={[
+                    { icon: <FaLightbulb />, color: "hover:text-yellow-500" },
+                    { icon: <FaRocket />, color: "hover:text-orange-500" },
+                    { icon: <FaUsers />, color: "hover:text-blue-500" }
+                  ]} 
+                />
+>>>>>>> e8cc6196486dd5056527a90a751c09251eeb0e1a
               </motion.div>
             </div>
           </div>
