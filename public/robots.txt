@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mfajriramadhan.vercel.app/sitemap.xml

@@ -35,7 +35,14 @@ export default function FloatingDecor() {
   );
 }
 
-function PlusSign({ top, left, right, delay }: any) {
+interface PlusSignProps {
+  top?: string;
+  left?: string;
+  right?: string;
+  delay?: number;
+}
+
+function PlusSign({ top, left, right, delay }: PlusSignProps) {
   return (
     <motion.div
       style={{ top, left, right }}

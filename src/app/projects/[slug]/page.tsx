@@ -1,20 +1,32 @@
 "use client";
 import { projectsData } from "@/data/projects";
-import { use, useState, useEffect } from "react";
+import { use, useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FaGithub, FaArrowLeft, FaCode, FaEnvelope, FaInstagram, FaLinkedin, FaGlobe } from "react-icons/fa";
+import { FaGithub, FaArrowLeft, FaEnvelope, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 export default function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {
   const router = useRouter();
   const { slug } = use(params);
   const project = projectsData.find((p) => p.slug === slug);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const handleMouse = (e: MouseEvent) => setMousePos({ x: e.clientX, y: e.clientY });
-    window.addEventListener("mousemove", handleMouse);
-    return () => window.removeEventListener("mousemove", handleMouse);
+    const handleMouse = (e: MouseEvent) => {
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(() => {
+        setMousePos({ x: e.clientX, y: e.clientY });
+        rafRef.current = null;
+      });
+    };
+    window.addEventListener("mousemove", handleMouse, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", handleMouse);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   if (!project) return (
@@ -42,13 +54,17 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
       <div className="relative z-10">
         {/* NAV BAR */}
         <nav className="p-6 md:p-10 flex justify-between items-center sticky top-0 bg-black/40 backdrop-blur-xl z-50">
-          <motion.button 
+          <motion.button
             whileHover={{ x: -5 }}
-            onClick={() => router.back()} 
+            onClick={() => router.back()}
             className="flex items-center gap-2 text-white/50 font-mono text-[10px] uppercase tracking-widest hover:text-red-600 transition-colors"
           >
-
+            <FaArrowLeft size={14} />
+            <span className="hidden sm:inline">Back</span>
           </motion.button>
+          <Link href="/" className="font-monument text-sm text-white/30 hover:text-white transition-colors uppercase tracking-widest">
+            MFRDHN
+          </Link>
         </nav>
 
         {/* 3. HERO SECTION */}
@@ -97,10 +113,12 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
                 whileHover={{ scale: 0.97 }}
                 className="relative w-[320px] md:w-[700px] aspect-video flex-shrink-0 rounded-xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50"
               >
-                <img 
-                  src={img} 
-                  className="w-full h-full object-cover transition-transform duration-700" 
-                  alt={`Project image ${i}`} 
+                <Image
+                  src={img}
+                  width={700}
+                  height={394}
+                  className="w-full h-full object-cover"
+                  alt={`${project.title} screenshot ${i}`}
                 />
               </motion.div>
             ))}
@@ -138,7 +156,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ slug: stri
               <div className="max-w-xl">
                 <p className="font-mono text-[10px] text-red-600 tracking-[0.5em] uppercase mb-8">— Contact</p>
                 <h2 className="font-monument text-3xl md:text-6xl uppercase leading-[1.1]">
-                  Let's Work <br />
+                  Let&apos;s Work <br />
                   <span className="text-white/20 hover:text-red-600 transition-colors duration-700 cursor-pointer">Together</span>
                 </h2>
               </div>
