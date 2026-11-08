@@ -1,6 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import {
   FaLaravel, FaPhp, FaHtml5, FaCss3Alt, FaJs, FaBootstrap,
   FaGithub, FaDownload,
@@ -23,22 +23,27 @@ import { easeOutExpo, staggerContainer, fadeSlideUp, scaleBlurIn } from "@/lib/a
 import Magnetic from "@/components/effects/Magnetic";
 
 export default function About() {
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  if (!isMounted) return null;
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const xWatermark = useTransform(scrollYProgress, [0, 1], [0, -400]);
 
   return (
-    <section className="relative w-full z-20 bg-transparent overflow-x-clip">
+    <section ref={containerRef} className="relative w-full z-20 bg-transparent overflow-x-clip">
       <div
         className="relative w-full bg-[#eeeeee] rounded-t-[80px] md:rounded-t-[120px] border-t-[3px] border-black/10 shadow-[0_-50px_80px_rgba(0,0,0,0.4)] -mt-24"
       >
         <div className="absolute top-20 left-0 w-full overflow-hidden opacity-[0.04] pointer-events-none select-none">
-          <h2 className="font-monument text-[20vw] whitespace-nowrap text-black uppercase">
+          <motion.h2
+            style={{ x: xWatermark }}
+            className="font-monument text-[20vw] whitespace-nowrap text-black uppercase will-change-transform"
+          >
             M.Fajri Ramadhan — Laravel Developer —
-          </h2>
+          </motion.h2>
         </div>
 
         <div className="relative z-20 mx-auto w-full max-w-[1240px] px-6 md:px-10 lg:px-12 py-24 md:py-32">
