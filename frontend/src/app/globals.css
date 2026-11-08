@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  /* Mendaftarkan font kustom ke sistem utility Tailwind */
+  --font-monument: var(--font-monument);
+  
+  /* Menambahkan warna brand jika diperlukan */
+  --color-brand-red: #991b1b;
+}
+
+/* Base Style */
+@layer base {
+  :root {
+    /* Fallback jika localFont di layout gagal dimuat */
+    --font-monument: "Monument Extended", sans-serif;
+  }
+
+  html {
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-[#0a0a0a] text-white antialiased;
+    font-family: Arial, sans-serif; /* Font default untuk body */
+    overflow-x: clip;
+    overscroll-behavior-x: none;
+  }
+
+  /* Shortcut untuk judul agar selalu pakai Monument */
+  h1, h2, h3 {
+    @apply font-[family-name:var(--font-monument)] tracking-tighter;
+  }
+}
+
+/* Custom Utilities */
+@utility text-monument {
+  font-family: var(--font-monument);
+}
+
+/* Glassmorphism surfaces */
+@utility glass {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+@utility glass-soft {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+@utility glass-input {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
