@@ -8,9 +8,14 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Username & password required" }, { status: 400 });
   }
 
+  const forwardedFor = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+
   const res = await laravelFetch("/auth/login", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      ...(forwardedFor ? { "X-Forwarded-For": forwardedFor } : {}),
+    },
     body: JSON.stringify({ username: body.username, password: body.password }),
   });
 

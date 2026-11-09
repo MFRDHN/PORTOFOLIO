@@ -17,7 +17,11 @@ class MediaUrl
             return '';
         }
 
-        if (preg_match('#^https?://#', $path) === 1 || str_starts_with($path, '/')) {
+        if (preg_match('#^https?://#i', $path) === 1) {
+            return $path;
+        }
+
+        if (str_starts_with($path, '/') && ! str_starts_with($path, '//')) {
             return $path;
         }
 

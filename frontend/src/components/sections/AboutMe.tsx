@@ -79,7 +79,7 @@ export default function About() {
               <motion.div variants={fadeSlideUp}>
                 <Magnetic strength={0.15}>
                   <motion.a
-                    href="https://docs.google.com/document/d/1nmQ92ORFSLzhF2T-D9lKVtEqzOEjVqY1/edit"
+                    href="https://drive.google.com/file/d/13_SCTGzqxn83cPD3DdZ54qbRwqG85nSf/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
@@ -107,7 +107,7 @@ export default function About() {
                 transition={{ duration: 0.9, ease: easeOutExpo, delay: 0.15 }}
                 className="text-[#333] text-lg md:text-xl font-medium leading-relaxed"
               >
-                I build web applications from front to back — crafting clean interfaces with React &amp; Next.js and powering them with Laravel on the server side. Since 2023, I&apos;ve been turning ideas into functional digital products, from e-commerce platforms to donation systems. I focus on writing scalable code, creating smooth user experiences, and delivering solutions that actually work. Currently exploring mobile development with Flutter and diving deeper into system architecture.
+                I'm a Software Engineering student passionate about building practical digital solutions. I develop web applications using React, Laravel, and Livewire, with experience in API integration, deployment, and IoT projects. I enjoy creating user-friendly interfaces and continuously improving my skills in software development.
               </motion.p>
 
               <motion.div

@@ -1,7 +1,17 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import ClientWrapper from "@/components/ClientWrapper";
+import {
+  contactEmail,
+  personId,
+  siteDescription,
+  siteKeywords,
+  siteName,
+  siteTitle,
+  siteUrl,
+  socialLinks,
+} from "@/lib/site";
 
 const monument = localFont({
   src: [
@@ -14,32 +24,26 @@ const monument = localFont({
   variable: "--font-monument",
 });
 
-const siteUrl = "https://mfajriramadhan.vercel.app";
-const siteName = "M Fajri Ramadhan";
-const siteDescription =
-  "Full-Stack Developer portfolio — crafting clean interfaces with React & Next.js and powering them with Laravel. Explore projects, certificates, and get in touch.";
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0a0a0a",
+  colorScheme: "dark",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${siteName} | Creative Developer 2026`,
+    default: siteTitle,
     template: `%s | ${siteName}`,
   },
   description: siteDescription,
-  keywords: [
-    "M Fajri Ramadhan",
-    "MFRDHN",
-    "Full-Stack Developer",
-    "Laravel Developer",
-    "Next.js",
-    "React",
-    "Portfolio",
-    "Web Developer Indonesia",
-    "Jonggol",
-  ],
+  keywords: siteKeywords,
   authors: [{ name: "M. Fajri Ramadhan", url: siteUrl }],
   creator: "M. Fajri Ramadhan",
   publisher: "M. Fajri Ramadhan",
+  category: "technology",
+  applicationName: siteName,
   robots: {
     index: true,
     follow: true,
@@ -56,7 +60,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName,
-    title: `${siteName} | Creative Developer 2026`,
+    title: siteTitle,
     description: siteDescription,
     images: [
       {
@@ -69,13 +73,18 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteName} | Creative Developer 2026`,
+    title: siteTitle,
     description: siteDescription,
     images: ["/og-image.jpg"],
     creator: "@mfrdhn",
   },
   alternates: {
     canonical: siteUrl,
+  },
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png", sizes: "64x64" }],
+    shortcut: "/favicon.png",
+    apple: [{ url: "/apple-icon.png", sizes: "180x180" }],
   },
 };
 
@@ -86,22 +95,44 @@ export default function RootLayout({
 }) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: "M. Fajri Ramadhan",
-    url: siteUrl,
-    jobTitle: "Full-Stack Developer",
-    description: siteDescription,
-    sameAs: [
-      "https://github.com/MFRDHN",
-      "https://www.linkedin.com/in/m-fajri-ramadhan-919058373/",
-      "https://www.instagram.com/_mf.ramadhan_",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": personId,
+        name: "M. Fajri Ramadhan",
+        alternateName: ["MFRDHN", "Muhammad Fajri Ramadhan"],
+        url: siteUrl,
+        image: `${siteUrl}/aset/pp.png`,
+        jobTitle: "Full-Stack Developer",
+        description: siteDescription,
+        email: `mailto:${contactEmail}`,
+        knowsAbout: [
+          "Web Development",
+          "Laravel",
+          "PHP",
+          "Next.js",
+          "React",
+          "MySQL",
+          "Flutter",
+        ],
+        sameAs: socialLinks,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Jonggol",
+          addressRegion: "West Java",
+          addressCountry: "ID",
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        url: siteUrl,
+        name: siteName,
+        description: siteDescription,
+        inLanguage: "en",
+        publisher: { "@id": personId },
+      },
     ],
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Jonggol",
-      addressRegion: "West Java",
-      addressCountry: "ID",
-    },
   };
 
   return (

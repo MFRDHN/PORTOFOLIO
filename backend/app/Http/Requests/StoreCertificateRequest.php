@@ -8,7 +8,7 @@ class StoreCertificateRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return true;
+        return $this->user() !== null;
     }
 
     /**
@@ -21,10 +21,10 @@ class StoreCertificateRequest extends FormRequest
             'subtitle' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'string', 'max:1000'],
             'image_file' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,avif', 'max:5120'],
-            'color' => ['nullable', 'string', 'max:20'],
-            'gradient' => ['nullable', 'string', 'max:500'],
+            'color' => ['nullable', 'string', 'regex:/^#[0-9A-Fa-f]{3,8}$/'],
+            'gradient' => ['nullable', 'string', 'max:500', 'regex:/^[#a-zA-Z0-9(),.%\s-]+$/'],
             'date' => ['required', 'string', 'max:50'],
-            'credentialUrl' => ['nullable', 'string', 'max:500'],
+            'credentialUrl' => ['nullable', 'string', 'max:500', 'url:http,https'],
         ];
     }
 

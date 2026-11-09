@@ -136,4 +136,17 @@ class ProjectApiTest extends TestCase
     {
         $this->getJson('/api/v1/admin/projects')->assertUnauthorized();
     }
+
+    public function test_project_rejects_non_http_links(): void
+    {
+        Sanctum::actingAs(User::factory()->create());
+
+        $this->postJson('/api/v1/admin/projects', [
+            'slug' => 'xss-project',
+            'title' => 'XSS',
+            'category' => 'Web',
+            'desc' => 'Description',
+            'liveUrl' => 'javascript:alert(1)',
+        ])->assertUnprocessable()->assertJsonValidationErrors(['liveUrl']);
+    }
 }

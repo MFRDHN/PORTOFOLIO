@@ -6,16 +6,26 @@ async function forwardJson(res: Response) {
   return NextResponse.json(json, { status: res.status });
 }
 
+function invalidId(id: string) {
+  return !/^\d+$/.test(id)
+    ? NextResponse.json({ message: "ID tidak valid" }, { status: 400 })
+    : null;
+}
+
 export async function GET(
   _req: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
+  const bad = invalidId(id);
+  if (bad) return bad;
   const res = await laravelFetch(`/admin/projects/${id}`);
   return forwardJson(res);
 }
 
 async function update(req: Request, id: string) {
+  const bad = invalidId(id);
+  if (bad) return bad;
   const contentType = req.headers.get("content-type") ?? "";
 
   if (contentType.includes("multipart/form-data")) {
@@ -48,6 +58,8 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;
+  const bad = invalidId(id);
+  if (bad) return bad;
   const res = await laravelFetch(`/admin/projects/${id}`, { method: "DELETE" });
   return forwardJson(res);
 }

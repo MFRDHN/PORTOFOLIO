@@ -10,6 +10,7 @@ use App\Models\Certificate;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CertificateController extends Controller
 {
@@ -48,17 +49,28 @@ class CertificateController extends Controller
 
     public function update(UpdateCertificateRequest $request, Certificate $certificate): JsonResponse
     {
+        $oldImage = $certificate->image ?? '';
+        $newImage = $this->image($request, $oldImage);
+
         $certificate->update([
             ...$this->payload($request),
-            'image' => $this->image($request, $certificate->image),
+            'image' => $newImage,
         ]);
+
+        if ($oldImage !== $newImage) {
+            $this->deleteStoredFile($oldImage);
+        }
 
         return $this->successResponse(new CertificateResource($certificate->fresh()), 'Sertifikat berhasil diperbarui.');
     }
 
     public function destroy(Certificate $certificate): JsonResponse
     {
+        $image = $certificate->image ?? '';
+
         $certificate->delete();
+
+        $this->deleteStoredFile($image);
 
         return $this->successResponse(null, 'Sertifikat berhasil dihapus.');
     }
@@ -105,5 +117,14 @@ class CertificateController extends Controller
         }
 
         return $fallback ?? '';
+    }
+
+    private function deleteStoredFile(?string $path): void
+    {
+        if (! $path || str_starts_with($path, 'http') || str_starts_with($path, '/')) {
+            return;
+        }
+
+        Storage::disk('public')->delete($path);
     }
 }

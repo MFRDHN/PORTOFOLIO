@@ -67,4 +67,18 @@ class CertificateApiTest extends TestCase
             ->assertUnprocessable()
             ->assertJsonValidationErrors(['title', 'date']);
     }
+
+    public function test_certificate_rejects_unsafe_style_and_link_values(): void
+    {
+        Sanctum::actingAs(User::factory()->create());
+
+        $this->postJson('/api/v1/admin/certificates', [
+            'title' => 'Unsafe',
+            'date' => '2026',
+            'color' => 'red; background:url(http://evil.test)',
+            'gradient' => 'linear-gradient(red,blue);background:url(javascript:alert(1))',
+            'credentialUrl' => 'javascript:alert(1)',
+        ])->assertUnprocessable()
+            ->assertJsonValidationErrors(['color', 'gradient', 'credentialUrl']);
+    }
 }

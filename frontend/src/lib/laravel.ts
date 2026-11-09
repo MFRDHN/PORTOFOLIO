@@ -60,7 +60,7 @@ async function readData<T>(res: Response): Promise<T> {
 
 export async function fetchProjects(): Promise<Project[]> {
   try {
-    const res = await fetch(`${API_URL}/public/projects`, { cache: "no-store" });
+    const res = await fetch(`${API_URL}/public/projects`, { next: { revalidate: 60 } });
     return await readData<Project[]>(res);
   } catch (error) {
     console.warn("Failed to load projects from Laravel:", error);
@@ -71,7 +71,7 @@ export async function fetchProjects(): Promise<Project[]> {
 export async function fetchProject(slug: string): Promise<Project | null> {
   try {
     const res = await fetch(`${API_URL}/public/projects/${encodeURIComponent(slug)}`, {
-      cache: "no-store",
+      next: { revalidate: 60 },
     });
     if (res.status === 404) return null;
     return await readData<Project>(res);
@@ -83,7 +83,7 @@ export async function fetchProject(slug: string): Promise<Project | null> {
 
 export async function fetchCertificates(): Promise<Certificate[]> {
   try {
-    const res = await fetch(`${API_URL}/public/certificates`, { cache: "no-store" });
+    const res = await fetch(`${API_URL}/public/certificates`, { next: { revalidate: 60 } });
     return await readData<Certificate[]>(res);
   } catch (error) {
     console.warn("Failed to load certificates from Laravel:", error);

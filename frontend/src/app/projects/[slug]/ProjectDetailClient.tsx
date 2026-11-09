@@ -53,8 +53,14 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
             <FaArrowLeft size={14} />
             <span className="hidden sm:inline">Back</span>
           </motion.button>
-          <Link href="/" className="font-monument text-sm text-white/30 hover:text-white transition-colors uppercase tracking-widest">
-            MFRDHN
+          <Link href="/" aria-label="M Fajri Ramadhan — Home" className="opacity-70 hover:opacity-100 transition-opacity">
+            <Image
+              src="/aset/logoportfolio.png"
+              alt="M Fajri Ramadhan"
+              width={32}
+              height={31}
+              className="h-7 w-auto"
+            />
           </Link>
         </nav>
 
@@ -190,7 +196,7 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
                 {[
                   { icon: <FaInstagram />, link: "https://www.instagram.com/_mf.ramadhan_?igsh=MW9lbTI2OWp1aDU0dg==" },
                   { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/m-fajri-ramadhan-919058373/" },
-                  { icon: <FaEnvelope />, link: "mailto:muhammadfajrirmdhn27@gmail.com" }
+                  { icon: <FaEnvelope />, link: "mailto:gimmortal357@gmail.com" }
                 ].map((social, i) => (
                   <motion.a
                     key={i}
@@ -206,7 +212,13 @@ export default function ProjectDetailClient({ project }: { project: Project }) {
 
             <div className="mt-24 md:mt-40 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
               <div className="flex flex-col items-center md:items-start gap-2 text-center md:text-left">
-                <span className="font-monument text-[9px] tracking-[0.8em] uppercase text-white/40">MFRDHN</span>
+                <Image
+                  src="/aset/logoportfolio.png"
+                  alt="M Fajri Ramadhan"
+                  width={28}
+                  height={27}
+                  className="h-6 w-auto opacity-40"
+                />
                 <span className="font-mono text-[9px] text-white/20 uppercase">Create at 2026</span>
               </div>
               <div className="flex gap-8 font-mono text-[9px] uppercase tracking-widest text-white/30">

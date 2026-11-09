@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import Magnetic from "@/components/effects/Magnetic";
 import { easeOutExpo } from "@/lib/animations";
@@ -46,9 +48,16 @@ export default function Navbar() {
           transition={{ duration: 0.6, ease: easeOutExpo }}
           className="relative cursor-pointer"
         >
-          <span className="font-monument text-xl md:text-2xl text-white tracking-tighter uppercase">
-            MFR<span className="text-red-600">DHN</span>
-          </span>
+          <Link href="/" aria-label="M Fajri Ramadhan — Home">
+            <Image
+              src="/aset/logoportfolio.png"
+              alt="M Fajri Ramadhan"
+              width={50}
+              height={50}
+              priority
+              className="h-7 md:h-8 w-auto"
+            />
+          </Link>
         </motion.div>
 
         <div className="hidden md:flex items-center gap-10">

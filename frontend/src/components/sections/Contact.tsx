@@ -58,8 +58,8 @@ export default function Contact() {
           <motion.div variants={fadeInUp} className="space-y-6">
             <h4 className="font-monument text-[10px] text-white/40 uppercase tracking-widest">Contact Details</h4>
             <div className="space-y-4">
-              <a href="mailto:muhammadfajrirmdhn27@gmail.com" className="block font-monument text-xs sm:text-sm break-all hover:text-red-600 transition-colors duration-300">
-                muhammadfajrirmdhn27@gmail.com
+              <a href="mailto:gimmortal357@gmail.com" className="block font-monument text-xs sm:text-sm break-all hover:text-red-600 transition-colors duration-300">
+                gimmortal357@gmail.com
               </a>
               <p className="text-white/40 font-mono text-xs uppercase leading-loose">
                 Jonggol, West Java, Indonesia <br />
@@ -82,7 +82,7 @@ export default function Contact() {
 
             <div className="flex flex-wrap items-center gap-3 md:justify-end">
               <a
-                href="mailto:muhammadfajrirmdhn27@gmail.com?subject=Project%20Inquiry"
+                href="mailto:gimmortal357@gmail.com?subject=Project%20Inquiry"
                 className="px-6 py-4 bg-red-600 rounded-full font-monument text-[10px] uppercase tracking-widest text-white hover:bg-white hover:text-black transition-all duration-300"
               >
                 Start a Project

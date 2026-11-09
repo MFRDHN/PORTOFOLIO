@@ -16,8 +16,8 @@ class AuthController extends Controller
     public function login(Request $request): JsonResponse
     {
         $credentials = $request->validate([
-            'username' => ['required', 'string'],
-            'password' => ['required', 'string'],
+            'username' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'string', 'max:255'],
         ], [
             'username.required' => 'Username wajib diisi.',
             'password.required' => 'Password wajib diisi.',
@@ -25,10 +25,8 @@ class AuthController extends Controller
 
         $login = $credentials['username'];
 
-        $user = User::query()
-            ->where('email', $login)
-            ->orWhere('name', $login)
-            ->first();
+        $user = User::query()->where('email', $login)->first()
+            ?? User::query()->where('name', $login)->first();
 
         if (! $user || ! Hash::check($credentials['password'], $user->password)) {
             return $this->errorResponse('Username atau password salah.', 401);

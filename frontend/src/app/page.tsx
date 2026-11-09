@@ -6,7 +6,7 @@ import Contact from "@/components/sections/Contact";
 import Reveal from "@/components/ui/Reveal";
 import { fetchCertificates, fetchProjects } from "@/lib/laravel";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export default async function Home() {
   const [projects, certificates] = await Promise.all([

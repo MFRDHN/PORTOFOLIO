@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { FaCube, FaEye, FaEyeSlash, FaArrowLeft } from "react-icons/fa";
+import Image from "next/image";
+import { FaEye, FaEyeSlash, FaArrowLeft } from "react-icons/fa";
 
 export default function AdminLogin() {
   const router = useRouter();
@@ -40,12 +41,14 @@ export default function AdminLogin() {
         <div aria-hidden className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:48px_48px]" />
 
         <div className="relative flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center">
-            <FaCube size={18} />
-          </div>
-          <span className="font-monument text-lg uppercase tracking-tight">
-            MFR<span className="text-red-600">DHN</span>
-          </span>
+          <Image
+            src="/aset/logoportfolio.png"
+            alt="M Fajri Ramadhan"
+            width={44}
+            height={42}
+            priority
+            className="h-11 w-auto"
+          />
         </div>
 
         <div className="relative max-w-md">
@@ -76,13 +79,16 @@ export default function AdminLogin() {
 
       <main className="flex items-center justify-center px-6 py-16">
         <div className="w-full max-w-sm">
-          <div className="lg:hidden flex items-center gap-3 justify-center mb-10">
-            <div className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center text-white">
-              <FaCube size={18} />
+          <div className="lg:hidden flex items-center justify-center mb-10">
+            <div className="h-14 w-14 rounded-xl bg-[#0a0a0a] flex items-center justify-center p-2">
+              <Image
+                src="/aset/logoportfolio.png"
+                alt="M Fajri Ramadhan"
+                width={40}
+                height={38}
+                className="h-full w-auto"
+              />
             </div>
-            <span className="font-monument text-lg uppercase tracking-tight">
-              MFR<span className="text-red-600">DHN</span>
-            </span>
           </div>
 
           <div className="mb-10">

@@ -10,6 +10,7 @@ use App\Models\Project;
 use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -38,18 +39,39 @@ class ProjectController extends Controller
 
     public function update(UpdateProjectRequest $request, Project $project): JsonResponse
     {
+        $oldCover = $project->cover ?? '';
+        $oldImages = $project->images ?? [];
+        $newCover = $this->cover($request, $oldCover);
+        $newImages = $this->images($request, $oldImages);
+
         $project->update([
             ...$this->payload($request),
-            'cover' => $this->cover($request, $project->cover ?? ''),
-            'images' => $this->images($request, $project->images ?? []),
+            'cover' => $newCover,
+            'images' => $newImages,
         ]);
+
+        if ($oldCover !== $newCover) {
+            $this->deleteStoredFile($oldCover);
+        }
+
+        foreach (array_diff($oldImages, $newImages) as $removed) {
+            $this->deleteStoredFile($removed);
+        }
 
         return $this->successResponse(new ProjectResource($project->fresh()), 'Project berhasil diperbarui.');
     }
 
     public function destroy(Project $project): JsonResponse
     {
+        $cover = $project->cover ?? '';
+        $images = $project->images ?? [];
+
         $project->delete();
+
+        $this->deleteStoredFile($cover);
+        foreach ($images as $image) {
+            $this->deleteStoredFile($image);
+        }
 
         return $this->successResponse(null, 'Project berhasil dihapus.');
     }
@@ -106,5 +128,14 @@ class ProjectController extends Controller
         }
 
         return array_values(array_unique($images));
+    }
+
+    private function deleteStoredFile(?string $path): void
+    {
+        if (! $path || str_starts_with($path, 'http') || str_starts_with($path, '/')) {
+            return;
+        }
+
+        Storage::disk('public')->delete($path);
     }
 }

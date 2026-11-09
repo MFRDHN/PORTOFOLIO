@@ -9,7 +9,7 @@ class StoreProjectRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return true;
+        return $this->user() !== null;
     }
 
     /**
@@ -24,14 +24,14 @@ class StoreProjectRequest extends FormRequest
             'desc' => ['required', 'string', 'max:1500'],
             'cover' => ['nullable', 'string', 'max:1000'],
             'cover_file' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp,avif', 'max:5120'],
-            'images' => ['nullable', 'array'],
-            'images.*' => ['nullable', 'string'],
+            'images' => ['nullable', 'array', 'max:10'],
+            'images.*' => ['nullable', 'string', 'max:1000'],
             'image_files' => ['nullable', 'array', 'max:3'],
             'image_files.*' => ['image', 'mimes:jpg,jpeg,png,webp,avif', 'max:5120'],
-            'technologies' => ['nullable', 'array'],
+            'technologies' => ['nullable', 'array', 'max:20'],
             'technologies.*' => ['string', 'max:100'],
-            'repoUrl' => ['nullable', 'string', 'max:500'],
-            'liveUrl' => ['nullable', 'string', 'max:500'],
+            'repoUrl' => ['nullable', 'string', 'max:500', 'url:http,https'],
+            'liveUrl' => ['nullable', 'string', 'max:500', 'url:http,https'],
             'featured' => ['sometimes', 'boolean'],
         ];
     }
